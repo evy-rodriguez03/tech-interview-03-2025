@@ -20,6 +20,25 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
+<script>
+  import { healthCheck } from './services/healthCheckService';
+  export default {
+    data: () => ({
+      msg: ''
+    }),
+    created() {
+      this.fetchHealthCheck();
+    },
+    methods: {
+      async fetchHealthCheck() {
+        const response = await healthCheck();
+
+        console.log(response);
+      }
+    }
+  }
+</script>
+
 <style scoped>
 header {
   line-height: 1.5;
